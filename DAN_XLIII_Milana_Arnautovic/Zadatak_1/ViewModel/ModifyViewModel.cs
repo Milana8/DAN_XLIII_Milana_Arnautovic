@@ -78,9 +78,7 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        /// <summary>
-        /// Add IdCard command
-        /// </summary>
+       
         private void AddEmployeExecute()
         {
             try
