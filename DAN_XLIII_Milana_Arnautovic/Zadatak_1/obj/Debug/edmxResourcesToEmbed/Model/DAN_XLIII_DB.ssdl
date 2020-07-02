@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DAN_XLIIIModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblEmployees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="JMBG" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Salary" Type="int" />
+    <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pasword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ManagerID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblManagers">
+    <Key>
+      <PropertyRef Name="ManagerID" />
+    </Key>
+    <Property Name="ManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sector" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccessLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblReports">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReportDate" Type="date" Nullable="false" />
+    <Property Name="Project" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="WorkHours" Type="int" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwReports">
+    <Key>
+      <PropertyRef Name="ReportId" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="ReportDate" />
+      <PropertyRef Name="Project" />
+      <PropertyRef Name="Position" />
+      <PropertyRef Name="WorkHours" />
+    </Key>
+    <Property Name="ReportId" Type="int" Nullable="false" />
+    <Property Name="EmployeeId" Type="int" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="101" Nullable="false" />
+    <Property Name="ReportDate" Type="date" Nullable="false" />
+    <Property Name="Project" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="WorkHours" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tblEmploy__Manag__403A8C7D">
+    <End Role="tblManagers" Type="Self.tblManagers" Multiplicity="0..1" />
+    <End Role="tblEmployees" Type="Self.tblEmployees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblManagers">
+        <PropertyRef Name="ManagerID" />
+      </Principal>
+      <Dependent Role="tblEmployees">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblReport__Emplo__412EB0B6">
+    <End Role="tblEmployees" Type="Self.tblEmployees" Multiplicity="0..1" />
+    <End Role="tblReports" Type="Self.tblReports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="tblReports">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DAN_XLIIIModelStoreContainer">
+    <EntitySet Name="tblEmployees" EntityType="Self.tblEmployees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblManagers" EntityType="Self.tblManagers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblReports" EntityType="Self.tblReports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vwReports" EntityType="Self.vwReports" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwReports].[ReportId] AS [ReportId], 
+    [vwReports].[EmployeeId] AS [EmployeeId], 
+    [vwReports].[FullName] AS [FullName], 
+    [vwReports].[ReportDate] AS [ReportDate], 
+    [vwReports].[Project] AS [Project], 
+    [vwReports].[Position] AS [Position], 
+    [vwReports].[WorkHours] AS [WorkHours]
+    FROM [dbo].[vwReports] AS [vwReports]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tblEmploy__Manag__403A8C7D" Association="Self.FK__tblEmploy__Manag__403A8C7D">
+      <End Role="tblManagers" EntitySet="tblManagers" />
+      <End Role="tblEmployees" EntitySet="tblEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblReport__Emplo__412EB0B6" Association="Self.FK__tblReport__Emplo__412EB0B6">
+      <End Role="tblEmployees" EntitySet="tblEmployees" />
+      <End Role="tblReports" EntitySet="tblReports" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

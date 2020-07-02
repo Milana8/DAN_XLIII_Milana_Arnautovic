@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DAN_XLIIIModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="JMBG" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salary" Type="Int32" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Pasword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ManagerID" Type="Int32" />
+    <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__403A8C7D" FromRole="tblEmployees" ToRole="tblManagers" />
+    <NavigationProperty Name="tblReports" Relationship="Self.FK__tblReport__Emplo__412EB0B6" FromRole="tblEmployees" ToRole="tblReports" />
+  </EntityType>
+  <EntityType Name="tblManager">
+    <Key>
+      <PropertyRef Name="ManagerID" />
+    </Key>
+    <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AccessLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__403A8C7D" FromRole="tblManagers" ToRole="tblEmployees" />
+  </EntityType>
+  <EntityType Name="tblReport">
+    <Key>
+      <PropertyRef Name="ReportId" />
+    </Key>
+    <Property Name="ReportId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WorkHours" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblReport__Emplo__412EB0B6" FromRole="tblReports" ToRole="tblEmployees" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vwReport">
+    <Key>
+      <PropertyRef Name="ReportId" />
+      <PropertyRef Name="FullName" />
+      <PropertyRef Name="ReportDate" />
+      <PropertyRef Name="Project" />
+      <PropertyRef Name="Position" />
+      <PropertyRef Name="WorkHours" />
+    </Key>
+    <Property Name="ReportId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeId" Type="Int32" />
+    <Property Name="FullName" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkHours" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tblEmploy__Manag__403A8C7D">
+    <End Role="tblManagers" Type="Self.tblManager" Multiplicity="0..1" />
+    <End Role="tblEmployees" Type="Self.tblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblManagers">
+        <PropertyRef Name="ManagerID" />
+      </Principal>
+      <Dependent Role="tblEmployees">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tblReport__Emplo__412EB0B6">
+    <End Role="tblEmployees" Type="Self.tblEmployee" Multiplicity="0..1" />
+    <End Role="tblReports" Type="Self.tblReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEmployees">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="tblReports">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DAN_XLIIIEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
+    <EntitySet Name="tblManagers" EntityType="Self.tblManager" />
+    <EntitySet Name="tblReports" EntityType="Self.tblReport" />
+    <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
+    <EntitySet Name="vwReports" EntityType="Self.vwReport" />
+    <AssociationSet Name="FK__tblEmploy__Manag__403A8C7D" Association="Self.FK__tblEmploy__Manag__403A8C7D">
+      <End Role="tblManagers" EntitySet="tblManagers" />
+      <End Role="tblEmployees" EntitySet="tblEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tblReport__Emplo__412EB0B6" Association="Self.FK__tblReport__Emplo__412EB0B6">
+      <End Role="tblEmployees" EntitySet="tblEmployees" />
+      <End Role="tblReports" EntitySet="tblReports" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
