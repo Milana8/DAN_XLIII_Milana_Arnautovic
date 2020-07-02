@@ -13,10 +13,10 @@ namespace Zadatak_1.Model
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DAN_XLIIIEntities : DbContext
+    public partial class DAN_XLIIIEntities1 : DbContext
     {
-        public DAN_XLIIIEntities()
-            : base("name=DAN_XLIIIEntities")
+        public DAN_XLIIIEntities1()
+            : base("name=DAN_XLIIIEntities1")
         {
         }
     
@@ -28,6 +28,7 @@ namespace Zadatak_1.Model
         public virtual DbSet<tblEmployee> tblEmployees { get; set; }
         public virtual DbSet<tblManager> tblManagers { get; set; }
         public virtual DbSet<tblReport> tblReports { get; set; }
+        public virtual DbSet<tblRole> tblRoles { get; set; }
         public virtual DbSet<vwReport> vwReports { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DAN_XLIIIModelStoreContainer" CdmEntityContainer="DAN_XLIIIEntities">
+  <EntityContainerMapping StorageEntityContainer="DAN_XLIIIModelStoreContainer" CdmEntityContainer="DAN_XLIIIEntities1">
     <EntitySetMapping Name="tblEmployees">
       <EntityTypeMapping TypeName="DAN_XLIIIModel.tblEmployee">
         <MappingFragment StoreEntitySet="tblEmployees">
@@ -36,6 +36,14 @@
           <ScalarProperty Name="Project" ColumnName="Project" />
           <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="DAN_XLIIIModel.tblRole">
+        <MappingFragment StoreEntitySet="tblRole">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

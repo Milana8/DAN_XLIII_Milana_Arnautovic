@@ -40,6 +40,13 @@
           <Property Name="WorkHours" Type="int" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
         </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vwReports">
@@ -59,7 +66,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
           <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="WorkHours" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblEmploy__Manag__3E52440B">
+        <Association Name="FK__tblEmploy__Manag__403A8C7D">
           <End Role="tblManagers" Type="Self.tblManagers" Multiplicity="0..1" />
           <End Role="tblEmployees" Type="Self.tblEmployees" Multiplicity="*" />
           <ReferentialConstraint>
@@ -71,7 +78,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReport__Emplo__3F466844">
+        <Association Name="FK__tblReport__Emplo__412EB0B6">
           <End Role="tblEmployees" Type="Self.tblEmployees" Multiplicity="0..1" />
           <End Role="tblReports" Type="Self.tblReports" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,6 +94,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
           <EntitySet Name="tblEmployees" EntityType="Self.tblEmployees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblManagers" EntityType="Self.tblManagers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblReports" EntityType="Self.tblReports" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vwReports" EntityType="Self.vwReports" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vwReports].[ReportId] AS [ReportId], 
@@ -98,11 +106,11 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
     [vwReports].[WorkHours] AS [WorkHours]
     FROM [dbo].[vwReports] AS [vwReports]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__tblEmploy__Manag__3E52440B" Association="Self.FK__tblEmploy__Manag__3E52440B">
+          <AssociationSet Name="FK__tblEmploy__Manag__403A8C7D" Association="Self.FK__tblEmploy__Manag__403A8C7D">
             <End Role="tblManagers" EntitySet="tblManagers" />
             <End Role="tblEmployees" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReport__Emplo__3F466844" Association="Self.FK__tblReport__Emplo__3F466844">
+          <AssociationSet Name="FK__tblReport__Emplo__412EB0B6" Association="Self.FK__tblReport__Emplo__412EB0B6">
             <End Role="tblEmployees" EntitySet="tblEmployees" />
             <End Role="tblReports" EntitySet="tblReports" />
           </AssociationSet>
@@ -128,8 +136,8 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Pasword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ManagerID" Type="Int32" />
-          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__3E52440B" FromRole="tblEmployees" ToRole="tblManagers" />
-          <NavigationProperty Name="tblReports" Relationship="Self.FK__tblReport__Emplo__3F466844" FromRole="tblEmployees" ToRole="tblReports" />
+          <NavigationProperty Name="tblManager" Relationship="Self.FK__tblEmploy__Manag__403A8C7D" FromRole="tblEmployees" ToRole="tblManagers" />
+          <NavigationProperty Name="tblReports" Relationship="Self.FK__tblReport__Emplo__412EB0B6" FromRole="tblEmployees" ToRole="tblReports" />
         </EntityType>
         <EntityType Name="tblManager">
           <Key>
@@ -138,7 +146,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
           <Property Name="ManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sector" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AccessLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__3E52440B" FromRole="tblManagers" ToRole="tblEmployees" />
+          <NavigationProperty Name="tblEmployees" Relationship="Self.FK__tblEmploy__Manag__403A8C7D" FromRole="tblManagers" ToRole="tblEmployees" />
         </EntityType>
         <EntityType Name="tblReport">
           <Key>
@@ -149,7 +157,14 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
           <Property Name="Project" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="WorkHours" Type="Int32" Nullable="false" />
           <Property Name="EmployeeID" Type="Int32" />
-          <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblReport__Emplo__3F466844" FromRole="tblReports" ToRole="tblEmployees" />
+          <NavigationProperty Name="tblEmployee" Relationship="Self.FK__tblReport__Emplo__412EB0B6" FromRole="tblReports" ToRole="tblEmployees" />
+        </EntityType>
+        <EntityType Name="tblRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="vwReport">
           <Key>
@@ -168,7 +183,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
           <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WorkHours" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK__tblEmploy__Manag__3E52440B">
+        <Association Name="FK__tblEmploy__Manag__403A8C7D">
           <End Role="tblManagers" Type="Self.tblManager" Multiplicity="0..1" />
           <End Role="tblEmployees" Type="Self.tblEmployee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,7 +195,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__tblReport__Emplo__3F466844">
+        <Association Name="FK__tblReport__Emplo__412EB0B6">
           <End Role="tblEmployees" Type="Self.tblEmployee" Multiplicity="0..1" />
           <End Role="tblReports" Type="Self.tblReport" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,16 +207,17 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="DAN_XLIIIEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DAN_XLIIIEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblEmployees" EntityType="Self.tblEmployee" />
           <EntitySet Name="tblManagers" EntityType="Self.tblManager" />
           <EntitySet Name="tblReports" EntityType="Self.tblReport" />
+          <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
           <EntitySet Name="vwReports" EntityType="Self.vwReport" />
-          <AssociationSet Name="FK__tblEmploy__Manag__3E52440B" Association="Self.FK__tblEmploy__Manag__3E52440B">
+          <AssociationSet Name="FK__tblEmploy__Manag__403A8C7D" Association="Self.FK__tblEmploy__Manag__403A8C7D">
             <End Role="tblManagers" EntitySet="tblManagers" />
             <End Role="tblEmployees" EntitySet="tblEmployees" />
           </AssociationSet>
-          <AssociationSet Name="FK__tblReport__Emplo__3F466844" Association="Self.FK__tblReport__Emplo__3F466844">
+          <AssociationSet Name="FK__tblReport__Emplo__412EB0B6" Association="Self.FK__tblReport__Emplo__412EB0B6">
             <End Role="tblEmployees" EntitySet="tblEmployees" />
             <End Role="tblReports" EntitySet="tblReports" />
           </AssociationSet>
@@ -211,7 +227,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DAN_XLIIIModelStoreContainer" CdmEntityContainer="DAN_XLIIIEntities">
+        <EntityContainerMapping StorageEntityContainer="DAN_XLIIIModelStoreContainer" CdmEntityContainer="DAN_XLIIIEntities1">
           <EntitySetMapping Name="tblEmployees">
             <EntityTypeMapping TypeName="DAN_XLIIIModel.tblEmployee">
               <MappingFragment StoreEntitySet="tblEmployees">
@@ -247,6 +263,14 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
                 <ScalarProperty Name="Project" ColumnName="Project" />
                 <ScalarProperty Name="WorkHours" ColumnName="WorkHours" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoles">
+            <EntityTypeMapping TypeName="DAN_XLIIIModel.tblRole">
+              <MappingFragment StoreEntitySet="tblRole">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

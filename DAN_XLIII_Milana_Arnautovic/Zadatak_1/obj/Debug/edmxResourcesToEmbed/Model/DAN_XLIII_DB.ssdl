@@ -35,6 +35,13 @@
     <Property Name="WorkHours" Type="int" Nullable="false" />
     <Property Name="EmployeeID" Type="int" />
   </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vwReports">
@@ -54,7 +61,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
     <Property Name="Position" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="WorkHours" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="FK__tblEmploy__Manag__3E52440B">
+  <Association Name="FK__tblEmploy__Manag__403A8C7D">
     <End Role="tblManagers" Type="Self.tblManagers" Multiplicity="0..1" />
     <End Role="tblEmployees" Type="Self.tblEmployees" Multiplicity="*" />
     <ReferentialConstraint>
@@ -66,7 +73,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__tblReport__Emplo__3F466844">
+  <Association Name="FK__tblReport__Emplo__412EB0B6">
     <End Role="tblEmployees" Type="Self.tblEmployees" Multiplicity="0..1" />
     <End Role="tblReports" Type="Self.tblReports" Multiplicity="*" />
     <ReferentialConstraint>
@@ -82,6 +89,7 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
     <EntitySet Name="tblEmployees" EntityType="Self.tblEmployees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblManagers" EntityType="Self.tblManagers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblReports" EntityType="Self.tblReports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vwReports" EntityType="Self.vwReports" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vwReports].[ReportId] AS [ReportId], 
@@ -93,11 +101,11 @@ warning 6002: The table/view 'DAN_XLIII.dbo.vwReports' does not have a primary k
     [vwReports].[WorkHours] AS [WorkHours]
     FROM [dbo].[vwReports] AS [vwReports]</DefiningQuery>
     </EntitySet>
-    <AssociationSet Name="FK__tblEmploy__Manag__3E52440B" Association="Self.FK__tblEmploy__Manag__3E52440B">
+    <AssociationSet Name="FK__tblEmploy__Manag__403A8C7D" Association="Self.FK__tblEmploy__Manag__403A8C7D">
       <End Role="tblManagers" EntitySet="tblManagers" />
       <End Role="tblEmployees" EntitySet="tblEmployees" />
     </AssociationSet>
-    <AssociationSet Name="FK__tblReport__Emplo__3F466844" Association="Self.FK__tblReport__Emplo__3F466844">
+    <AssociationSet Name="FK__tblReport__Emplo__412EB0B6" Association="Self.FK__tblReport__Emplo__412EB0B6">
       <End Role="tblEmployees" EntitySet="tblEmployees" />
       <End Role="tblReports" EntitySet="tblReports" />
     </AssociationSet>

@@ -29,10 +29,20 @@ namespace Zadatak_1.ViewModel
                     OnPropertyChanged("Logged");
                 }
             }
-         
+        private tblRole role;
+        public tblRole Role
+        {
+            get { return role; }
+            set
+            {
+               role = value;
+                OnPropertyChanged("Role");
+            }
+        }
 
-            #region Constructor
-            public LoginViewModel(LoginView logInOpen)
+
+        #region Constructor
+        public LoginViewModel(LoginView logInOpen)
             {
                 logIn = logInOpen;
                 logged = new tblEmployee();
@@ -57,7 +67,7 @@ namespace Zadatak_1.ViewModel
         { 
             try
                 {
-                    switch (logged.Position)
+                    switch (role.RoleName)
                     {
                         case "WPFadmin":
                             WPFadminView adminMenu = new WPFadminView();

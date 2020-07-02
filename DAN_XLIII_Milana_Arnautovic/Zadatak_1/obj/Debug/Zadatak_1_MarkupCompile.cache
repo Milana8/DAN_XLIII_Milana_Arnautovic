@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Korisnik\Desktop\DAN_XLIII_Milana_Arnautovic\DAN_XLIII_Milana_Arnautovic\Zadatak_1\App.xaml
-3-1861399814
+7-904393580
 21138417715
-19648447798
+26-1819555313
 18-1777680708
-MainWindow.xaml;View\ErrorView.xaml;View\LoginView.xaml;
+MainWindow.xaml;View\AddEmployeeView.xaml;View\AddReportView.xaml;View\LoginView.xaml;View\ModifyView.xaml;View\ReadOnlyView.xaml;View\WPFadminView.xaml;
 
 False
 

@@ -65,11 +65,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Model\DAN_XLIII_DB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAN_XLIII_DB.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\DAN_XLIII_DB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DAN_XLIII_DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DAN_XLIII_DB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAN_XLIII_DB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Service.cs" />
     <Compile Include="Model\tblEmployee.cs">
       <DependentUpon>DAN_XLIII_DB.tt</DependentUpon>
     </Compile>
@@ -79,10 +90,9 @@
     <Compile Include="Model\tblReport.cs">
       <DependentUpon>DAN_XLIII_DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\vwReport.cs">
+    <Compile Include="Model\tblRole.cs">
       <DependentUpon>DAN_XLIII_DB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Service\Service.cs" />
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\ModifyViewModel.cs" />
@@ -106,6 +116,9 @@
     <Compile Include="View\WPFadminView.xaml.cs">
       <DependentUpon>WPFadminView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\vwReport.cs">
+      <DependentUpon>DAN_XLIII_DB.tt</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -113,16 +126,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Model\DAN_XLIII_DB.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DAN_XLIII_DB.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DAN_XLIII_DB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DAN_XLIII_DB.edmx</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -188,22 +191,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Validation\" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\DAN_XLIII_DB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DAN_XLIII_DB.Context.cs</LastGenOutput>
       <DependentUpon>DAN_XLIII_DB.edmx</DependentUpon>
+      <LastGenOutput>DAN_XLIII_DB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\DAN_XLIII_DB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DAN_XLIII_DB.edmx</DependentUpon>
       <LastGenOutput>DAN_XLIII_DB.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

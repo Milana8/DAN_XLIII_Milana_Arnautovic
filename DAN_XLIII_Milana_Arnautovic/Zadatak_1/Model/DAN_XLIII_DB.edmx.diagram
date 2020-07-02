@@ -4,13 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="eb40088f7f94455cb4132157a390f600" Name="Diagram1">
+      <Diagram DiagramId="458ea48724414187b83f6eae7bfa844c" Name="Diagram1">
         <EntityTypeShape EntityType="DAN_XLIIIModel.tblEmployee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DAN_XLIIIModel.tblManager" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="DAN_XLIIIModel.tblReport" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DAN_XLIIIModel.vwReport" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="DAN_XLIIIModel.FK__tblEmploy__Manag__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="DAN_XLIIIModel.FK__tblReport__Emplo__3F466844" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DAN_XLIIIModel.tblRole" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAN_XLIIIModel.vwReport" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="DAN_XLIIIModel.FK__tblEmploy__Manag__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DAN_XLIIIModel.FK__tblReport__Emplo__412EB0B6" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

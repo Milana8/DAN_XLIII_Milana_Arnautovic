@@ -13,7 +13,7 @@ namespace Zadatak_1.ViewModel
 {
     class ModifyViewModel : ViewModelBase
     {
-        readonly tblEmployee employeee;
+        readonly ModifyView employeee;
 
         private tblEmployee allEmployeeV;
         public tblEmployee AllEmployeeV
@@ -57,7 +57,7 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        public ModifyViewModel(tblEmployee employeeOpen)
+        public ModifyViewModel(ModifyView employeeOpen)
         {
             employeee = employeeOpen;
 
@@ -93,10 +93,7 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        /// <summary>
-        /// Can add IdCard command
-        /// </summary>
-        /// <returns>True or false</returns>
+        
         private bool CanAddEmployeeExecute()
         {
             return true;

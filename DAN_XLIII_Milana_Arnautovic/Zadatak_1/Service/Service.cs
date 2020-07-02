@@ -13,7 +13,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     List<tblEmployee> list = new List<tblEmployee>();
                     list = (from e in context.tblEmployees select e).ToList();
@@ -31,7 +31,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     tblEmployee idEmployeeToDelete = (from e in context.tblEmployees where e.EmployeeID == idEmployee select e).First();
                     context.tblEmployees.Remove(idEmployeeToDelete);
@@ -47,7 +47,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     List<vwReport> list = new List<vwReport>();
                     list = (from e in context.vwReports select e).ToList();
@@ -65,7 +65,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     tblEmployee employee = (from x in context.tblEmployees where x.Username == username && x.Pasword == password select x).FirstOrDefault();
                     return employee;
@@ -83,7 +83,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     tblManager manager = (from x in context.tblManagers where x.ManagerID == employee.EmployeeID select x).FirstOrDefault();
                     if (manager != null)
@@ -108,7 +108,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     tblManager manager = (from x in context.tblManagers where x.ManagerID == id select x).FirstOrDefault();
                     return manager;
@@ -127,7 +127,7 @@ namespace Zadatak_1.Service
         {
             try
             {
-                using (DAN_XLIIIEntities context = new DAN_XLIIIEntities())
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
                 {
                     int user = (from l in context.tblEmployees where l.EmployeeID == userID select l.EmployeeID).FirstOrDefault();
 
@@ -145,6 +145,24 @@ namespace Zadatak_1.Service
             {
                 System.Diagnostics.Debug.WriteLine("Exception " + ex.Message.ToString());
                 return false;
+            }
+        }
+
+        public List<tblRole> GetAllRole()
+        {
+            try
+            {
+                using (DAN_XLIIIEntities1 context = new DAN_XLIIIEntities1())
+                {
+                    List<tblRole> list = new List<tblRole>();
+                    list = (from l in context.tblRoles select l).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
             }
         }
     }
