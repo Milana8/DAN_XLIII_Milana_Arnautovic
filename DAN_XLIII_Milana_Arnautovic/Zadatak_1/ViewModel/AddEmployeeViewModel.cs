@@ -13,7 +13,7 @@ namespace Zadatak_1.ViewModel
 {
     class AddEmployeeViewModel : ViewModelBase
     {
-        readonly AddEmployeeView addEmployee;
+        
 
 
         private tblEmployee employee;

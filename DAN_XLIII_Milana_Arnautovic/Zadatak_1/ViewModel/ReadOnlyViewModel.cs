@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Zadatak_1.Model;
+using Zadatak_1.View;
 
 namespace Zadatak_1.ViewModel
 {
     class ReadOnlyViewModel: ViewModelBase
     {
-        readonly tblEmployee employeee;
+        readonly ReadOnlyView employeee;
 
         private tblEmployee allEmployeeV;
         public tblEmployee AllEmployeeV
@@ -40,6 +41,8 @@ namespace Zadatak_1.ViewModel
         }
 
         private tblEmployee employee;
+        private ReadOnlyView readOnlyView;
+
         public tblEmployee Employee
         {
             get
@@ -53,12 +56,14 @@ namespace Zadatak_1.ViewModel
             }
         }
 
-        public ReadOnlyViewModel(tblEmployee employeeOpen)
+        public ReadOnlyViewModel(ReadOnlyView employeeOpen)
         {
             employeee = employeeOpen;
 
             Service.Service s = new Service.Service();
             employed = s.GetAllEmployee().ToList();
         }
+
+       
     }
 }

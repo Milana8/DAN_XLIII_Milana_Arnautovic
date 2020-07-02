@@ -94,7 +94,9 @@
       <DependentUpon>DAN_XLIII_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AddEmployeeViewModel.cs" />
+    <Compile Include="ViewModel\AddReportViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\ModifyViewModel.cs" />
     <Compile Include="ViewModel\ReadOnlyViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
